@@ -36,13 +36,11 @@ With async-await:
 const pull = require('pull-stream')
 const thenable = require('pull-thenable')
 
-const stream = pull.values(['a','b']);
-const source = thenable(stream);
-
 async function main() {
+  const source = thenable(pull.values(['a','b']));
   while (true) {
     try {
-      const x = await thenable(readable);
+      const x = await source;
       console.log(x); // 'a'
                       // 'b'
     } catch (errOrEnd) {
